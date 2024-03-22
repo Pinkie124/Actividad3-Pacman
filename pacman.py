@@ -91,7 +91,7 @@ def valid(point):
 def world():
     """Draw world using path."""
     bgcolor('black')
-    path.color('blue')
+    path.color('brown')
 
     for index in range(len(tiles)):
         tile = tiles[index]
@@ -154,7 +154,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 50)
 
 
 def change(x, y):
