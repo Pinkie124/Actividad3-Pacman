@@ -9,7 +9,7 @@ Exercises
 5. Make the ghosts smarter.
 """
 
-from random import choice
+from random import choice, randrange
 from turtle import *
 
 from freegames import floor, vector
@@ -131,22 +131,24 @@ def move():
     dot(20, 'yellow')
 
     for point, course in ghosts:
-        if valid(point + course):
-            point.move(course)
-        else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+      dx = pacman.x - point.x
+      dy = pacman.y - point.y
 
-        up()
-        goto(point.x + 10, point.y + 10)
-        dot(20, 'red')
+      if dx > 0:
+         plan = vector(5, 0)
+      elif dx < 0:
+         plan = vector(-5, 0)
+      elif dy > 0:
+         vector(0, 5),
+      else:
+         plan = vector(0, -5)
+
+      if valid(point + plan):
+         point.move(plan)
+
+      up()
+      goto(point.x + 10, point.y + 10)
+      dot(20, 'red')
 
     update()
 
